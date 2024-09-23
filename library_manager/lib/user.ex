@@ -3,9 +3,15 @@ defmodule User do
   defstruct cc: 0, name: "", books: []
 
   def add_user(users, cc, name)do
-    users = [%User{cc: cc, name: name, books: []}|users]
-    IO.inspect("User #{Enum.at(users, 0).cc} create")
-    :ok
+    if Enum.find(users, &(&1.cc == cc))do
+      IO.puts("User with the same cc already exists")
+      :false
+    else
+      users = [%User{cc: cc, name: name, books: []}|users]
+      IO.inspect("User #{Enum.at(users, 0).cc} create")
+      users
+      #:ok
+    end
   end
 
   def list_users(users) do
@@ -13,6 +19,7 @@ defmodule User do
       Enum.filter(users, fn x-> IO.inspect(x) end)
     else
       IO.puts("the list users is empty")
+      users
     end
   end
 

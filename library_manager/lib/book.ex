@@ -3,9 +3,15 @@ defmodule Book do
   defstruct isbm: 0, title: "", author: "", stock: 0
 
   def add_book(books, isbm, title, author, stock) do
-    books = [%Book{isbm: isbm, title: title, author: author, stock: stock}|books]
-    IO.puts("The book '#{Enum.at(books,0).title}' was added successfully!! ")
-    :ok
+    if Enum.find(books, &(&1.isbm == isbm)) do
+      IO.puts("The book with the same ISBM already exists")
+      :false
+    else
+      books = [%Book{isbm: isbm, title: title, author: author, stock: stock}|books]
+      IO.puts("The book '#{Enum.at(books,0).title}' was added successfully!! ")
+      books
+      #:ok
+    end
   end
 
   def list_books(books) do
@@ -13,11 +19,12 @@ defmodule Book do
       Enum.filter(books, fn x-> IO.inspect(x) end)
     else
        IO.puts("the list books is empty")
+       books
     end
   end
 
   @doc """
-  Esta función puede simplemente devolver :ok y un mensaje que contenga el stock del libro pero de deolvió el valor
+  Esta función puede simplemente devolver :ok y un mensaje que contenga el stock del libro, pero para efectos practicos devuelve el valor
   """
   def stock_book(books, isbm) do
     if length(books) > 0 do
