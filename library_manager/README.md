@@ -6,7 +6,7 @@
 **Requrimientos:**
 1. Tener instalado Erlang y Elixir
 **Para empezar:**
-1. Ve a clona el re repositorio y ve a la carpeta libarri_manager
+1. Clona el repositorio y ve a la carpeta librari_manager
 2. Ejecuta el siguiente comando: [ iex.bat -S mix ] para compilar la aplicación y lanzarla en la maquina de Erlang
 3. Creas 2 listas vacias para pasarlas como parametro
 ```elixir
@@ -14,7 +14,9 @@
   books = []
 ```
 4. Llama a library manager y pasa como parametro las 2 listas creadas en su funcion run:
-[LibraryManager.run(users,books)]
+```elixir
+  LibraryManager.run(users,books)
+```
 
 ## Como funciona
 **La aplicación cuenta con 3 módulos: User|Book|LibraryManager con 9 funciones incluida run() desde las que se ejecuta la logica, las funciones son:**
